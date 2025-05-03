@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教師資料填寫</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/data.css">
+</head>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<body>
+    <div id="loading-spinner" class="hidden">
+        <div class="spinner"></div>
+        <p>資料處理中，請稍候...</p>
+    </div>
+    <div class="web-container">
+        <h1>教師任職意願資料填寫與更新</h1>
+        <form id="teacher-data-form">
+            <div class="card-container">
+            <!-- 基本資料卡片 -->
+            <div class="card">
+                <h2>基本資料</h2>
+                <label for="teacher-name">教師姓名</label>
+                <input type="text" id="teacher-name" name="teacherName" readonly>
+
+                <label for="phone">行動電話</label>
+                <input type="text" id="phone" name="phone" placeholder="09-XXXXXXXX" required>
+
+                <label for="line-id">LINE ID</label>
+                <input type="text" id="line-id" name="lineId" placeholder="請輸入 LINE ID">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="XXXX@XXXXXXXXXX" required>
+            </div>
+
+            <!-- 學歷卡片 -->
+            <div class="card">
+                <h2>學歷</h2>
+                <label for="university">大學</label>
+                <input type="text" id="university" name="university" placeholder="XXXX學校 XXXX系組 XXXX輔系">
+
+                <label for="graduate-school">研究所</label>
+                <input type="text" id="graduate-school" name="graduateSchool" placeholder="XXXX學校 XXXX系所">
+
+                <label for="credit-class">學分班</label>
+                <input type="text" id="credit-class" name="creditClass" placeholder="請輸入學分班">
+
+                <label for="other-education">其他學歷</label>
+                <input type="text" id="other-education" name="otherEducation" placeholder="請輸入其他學歷">
+            </div>
+
+            <!-- 專長卡片 -->
+            <div class="card">
+                <h2>專長</h2>
+                <fieldset>
+                    <legend>本土語言</legend>
+                    <label><input type="checkbox" name="localLanguage" value="true"> 閩南語</label>
+                    <input type="text" name="localLanguage-grade" placeholder="級別" style="max-width: 10%;"> 
+                    <label><input type="checkbox" name="fourLanguage" value="true"> 客家語四縣</label>
+                    <input type="text" name="fourLanguage-grade" placeholder="級別" style="max-width: 10%;"> 
+                    <label><input type="checkbox" name="seaLanguage" value="true"> 客家語海陸</label>
+                    <input type="text" name="seaLanguage-grade" placeholder="級別" style="max-width: 10%;"> 
+                    <label><input type="checkbox" name="signlanguage" value="true"> 臺灣手語</label>
+                    <input type="text" name="signlanguage-grade" placeholder="級別" style="max-width: 10%;"> 
+                    <label><input type="checkbox" name="localLanguagequalifications" value="true" > 本土語教學支援人員資格</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>英語專長</legend>
+                    <label><input type="checkbox" name="englishSpecialty" value="true"> 教師證加註專長</label>
+                    <label><input type="checkbox" name="englishSpecialty-20" value="true"> 英語 20 學分班</label>
+                    <label><input type="checkbox" name="englishSpecialty-CEF" value="true"> CEF 架構 B2（高階）級以上國小英語加註專長</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>輔導專長</legend>
+                    <label><input type="checkbox" name="guidanceSpecialty-qua" value="true"> 具專輔資格</label>
+                    <label><input type="checkbox" name="guidanceSpecialty-graduate" value="true"> 輔導、諮商、心理相關系所畢業</label>
+                    <label><input type="checkbox" name="guidanceSpecialty" value="true"> 教師證加註專長</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>雙語專長</legend>
+                    <label><input type="checkbox" name="EnglishSpecialty-grade" value="true"> 中小學雙語教學在職教師增能學分班</label>
+                    <label><input type="checkbox" name="EnglishSpecialty" value="true"> 教師證加註雙語教學次專長</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>自然專長</legend>
+                    <label><input type="checkbox" name="natureSpecialty" value="true"> 教師證加註自然專長</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>科技專長</legend>
+                    <label><input type="checkbox" name="techSpecialty" value="true"> 教師證加註科技專長</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>其他</legend>
+                    <label><input type="checkbox" name="lifeSpecialty" value="true"> 生活課程 12 小時以上研習</label>
+                    <div class="option-group">
+                      <label>
+                        <input type="checkbox" id="other-checkbox" name="other" value="true"> 其他
+                        <input type="text" id="other-language-text" name="otherLanguageText"  style="width: 90%; display: none;">
+                    </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <!-- 任教意願卡片 -->
+            <div class="card">
+                <h2>任教意願</h2>
+                <p class="text-red">如欲擔任科任教師，請務必於志願一選擇欲任教領域科任</p>
+                  <div class="priority-group">
+                    <label>第一順位</label>
+                    <select id="first-choice-select" name="firstChoice">
+                      <option value="">請選擇職務</option>
+                      <option value="低年級級任導師">低年級級任導師</option>
+                      <option value="中年級級任導師">中年級級任導師</option>
+                      <option value="高年級級任導師">高年級級任導師</option>
+                      <option value="生活課程科任">生活課程科任</option>
+                      <option value="英語領域科任">英語領域科任</option>
+                      <option value="社會領域科任">社會領域科任</option>
+                      <option value="自然領域科任">自然領域科任</option>
+                      <option value="體育領域科任">體育領域科任</option>
+                      <option value="藝術領域科任">藝術領域科任</option>
+                      <option value="科技創新任務科任">科技創新任務科任</option>
+                    </select>
+                  </div>
+                  
+                  <div class="priority-group">
+                    <label>第二順位</label>
+                    <select id="second-choice-select" name="secondChoice">
+                      <option value="">請選擇職務</option>
+                      <!-- 同上 -->
+                      <option value="低年級級任導師">低年級級任導師</option>
+                      <option value="中年級級任導師">中年級級任導師</option>
+                      <option value="高年級級任導師">高年級級任導師</option>
+                      <option value="生活課程科任">生活課程科任</option>
+                      <option value="英語領域科任">英語領域科任</option>
+                      <option value="社會領域科任">社會領域科任</option>
+                      <option value="自然領域科任">自然領域科任</option>
+                      <option value="體育領域科任">體育領域科任</option>
+                      <option value="藝術領域科任">藝術領域科任</option>
+                      <option value="科技創新任務科任">科技創新任務科任</option>
+                    </select>
+                  </div>
+                  
+                  <div class="priority-group">
+                    <label>第三順位</label>
+                    <select id="third-choice-select" name="thirdChoice">
+                      <option value="">請選擇職務</option>
+                      <!-- 同上 -->
+                      <option value="低年級級任導師">低年級級任導師</option>
+                      <option value="中年級級任導師">中年級級任導師</option>
+                      <option value="高年級級任導師">高年級級任導師</option>
+                      <option value="生活課程科任">生活課程科任</option>
+                      <option value="英語領域科任">英語領域科任</option>
+                      <option value="社會領域科任">社會領域科任</option>
+                      <option value="自然領域科任">自然領域科任</option>
+                      <option value="體育領域科任">體育領域科任</option>
+                      <option value="藝術領域科任">藝術領域科任</option>
+                      <option value="科技創新任務科任">科技創新任務科任</option>
+                    </select>
+                  </div>
+
+                  <div id="additional-info" style="display:none;">
+                    <h3>科任老師之專長自述</h3>
+                    <div class="field-group">
+                      <label>學經歷相關進修 10%</label>
+                      <textarea name="study-experience" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>研究發表(期刊論文、教案設計、相關徵集等) 10%</label>
+                      <textarea name="research-publication" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>有效教學(素養教學、多元評量、學生學習成效、作業批閱、上課態度等) 10%</label>
+                      <textarea name="effective-teaching" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>舉辦需共備、觀議課之公開課（不限欲申請之領域） 10%</label>
+                      <textarea name="public-lesson" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>班級經營(班級常規管理、親師溝通) 10%</label>
+                      <textarea name="class-management" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>專業社群領導(帶領社群專業成長) 10%</label>
+                      <textarea name="professional-community" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>擔任全市或跨校公開授課者 10%</label>
+                      <textarea name="public-lecture" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>其他(該領域輔導員工作坊或研習講師、榮獲SUPER老師、明志獎老師、特殊優良教師等) 10%</label>
+                      <textarea name="other" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>專科教室管理(含教具管理促進流通) 10%</label>
+                      <textarea name="special-class-management" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                
+                    <div class="field-group">
+                      <label>學生競賽指導評審或學校大型活動支援 10%</label>
+                      <textarea name="competition-guidance" placeholder="請提供佐證資料雲端連結在自述中"></textarea>
+                    </div>
+                  </div>
+              </div>  
+                
+                  
+              
+              <div class="button-wrapper">
+                <button type="button" id="back-to-home" class="logout-button">返回首頁</button>
+                <button type="submit" class="btn">確認更新</button>
+              </div>
+        </form>
+    </div>
+    <script src="js/data.js">
+    </script>
+</body>
+</html>

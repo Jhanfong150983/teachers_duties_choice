@@ -1,0 +1,152 @@
+.web-container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    margin-top: 200px; /* 調整為較小的間距 */
+    max-width: 50%;
+    max-height: 80vh; /* 限制最大高度為視窗的 80% */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 上對齊 */
+    overflow-y: auto; /* 允許垂直滾動 */
+}
+
+.web-container h1{
+    font-size: 2em;
+    color: #333;
+}
+
+.web-container h3{
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap:20px; /* 卡片之間的間距 */
+}
+.card {
+    flex: 1 1 calc(50% - 20px); /* 每個卡片佔 50% 寬度，減去間距 */
+    max-width: 500px; /* 限制卡片最大寬度 */
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* 確保內邊距不影響寬度計算 */
+    overflow: hidden; /* 隱藏溢出的內容 */
+}
+
+.card h2 {
+    font-size: 1.2em;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card fieldset {
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    gap: 1rem;
+}
+
+.card fieldset label {
+    white-space: nowrap; /* 防止文字換行 */
+  }
+
+.card fieldset label:nth-child(5) {
+    flex-basis: 100%; /* 強制第四個元素換行 */
+}
+
+.card label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.card input[type="text"],
+.card input[type="email"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.card input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
+
+.option-group {
+    width: 100%;          /* 獨佔一整行 */
+  }
+  
+  .option-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* 確保按鈕位於正下方 */
+.button-wrapper {
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    margin-top: 20px; /* 與上方內容保持間距 */
+    width: 100%; /* 確保按鈕容器寬度與表單一致 */
+    gap: 10px;
+}
+
+button{
+    padding: 0.75em 2em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #3f8efc;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #336fcc;
+   
+}
+
+textarea {
+    width: 100% !important; /* 填滿父容器的寬度 */
+    min-height: 80px; /* 設定最小高度 */
+    max-height: 200px; /* 設定最大高度 */
+    overflow-y: auto; /* 顯示垂直滾動條 */
+    resize: vertical; /* 允許垂直調整大小 */
+    box-sizing: border-box; /* 包含內邊距與邊框 */
+}
+
+.text-red {
+    font-size: 1em;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #ff0000;
+}

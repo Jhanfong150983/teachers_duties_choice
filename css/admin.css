@@ -1,0 +1,128 @@
+/* 表格樣式 */
+#teacher-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+#teacher-table th,
+#teacher-table td {
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+#teacher-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+#table-container {
+    overflow-x: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+#admin-container-data {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 3px;
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 600px;
+    text-align: center;
+}
+
+#admin-container-work {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 3px;
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    text-align: center;
+}
+  
+footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 未被選中時，表格單元格的樣式 */
+#teacher-table td {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 選中的格子顏色 */
+#teacher-table td.selected {
+  background-color: #d3f9d8;  /* 可根據需求設置顏色 */
+}
+
+/* 讓表格在懸停時提供視覺提示 */
+#teacher-table td:hover {
+  background-color: #f1f1f1;
+}
+
+/* 統計相關樣式 */
+.statistics-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #f9f9f9;
+  min-width: 200px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.stat-card h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  color: #333;
+}
+
+.teacher-tag {
+  padding: 3px 8px;
+  margin: 2px;
+  background-color: #e9e9e9;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 0.9em;
+}
+
+/* 選擇樣式 */
+.choice.selected {
+  background-color: #e6f7ff;
+  border: 2px solid #1890ff;
+  cursor: pointer;
+}
+
+.choice {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.choice:hover {
+  background-color: #f0f0f0;
+}

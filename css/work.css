@@ -1,0 +1,75 @@
+table {
+    width: 100%;
+    border-collapse: separate; /* 分離邊框 */
+    border-spacing: 0; /* 確保儲存格之間沒有間距 */
+}
+
+th, td {
+    border: 2px solid #ccc;
+    text-align: center;
+    padding: 8px;
+    width: 100px; /* 確保儲存格寬度自動調整 */
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+td:first-child, th:first-child {
+    width: 150px; /* 固定第一列的寬度 */
+}
+
+.dropdown-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.dropdown-group label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+}
+
+button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+.teacher-info {
+    margin-bottom: 20px;
+    font-size: 1em;
+    color: #333;
+}
+
+.teacher-info p {
+    margin: 0;
+}
+
+.highlight {
+    border: 2px solid #ff0000; /* 紅色框線 */
+    background-color: #ffe6e6; /* 淡紅色背景 */
+    z-index: 1; /* 確保紅色框線在上層 */
+}
+
+.score-info{
+    display: flex;
+    flex-direction: row-reverse; /* 從右排到左 */
+}
+
+.score-info .score{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #f1d391;
+    font-size: 5em;
+}

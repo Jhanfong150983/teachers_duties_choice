@@ -1,0 +1,172 @@
+body {
+    background-image: url("images/background.svg");
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+#container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 8px;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.logout-button {
+    background-color: #dc3545;  /* 紅色 */
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0; /* 確保沒有額外的下方間距 */
+}
+
+.input-wrapper input {
+    flex: 1; /* 讓輸入框填滿剩餘空間 */
+    padding-right: 0; /* 移除右側內距，因為圖標不再疊加 */
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    margin-left: 10px; /* 與輸入框保持間距 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.icon-eye {
+    width: 1.2em;
+    height: 1.2em;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover .icon-eye {
+    color: #000;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 2px; /* 與輸入框保持 2px 的間距 */
+    display: block; /* 確保錯誤訊息顯示在新的一行 */
+}
+
+/* 等待畫面容器 */
+#loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* 隱藏等待畫面 */
+#loading-spinner.hidden {
+    display: none !important;
+}
+
+/* 跑動動畫 */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* 跑動動畫的關鍵幀 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 等待文字樣式 */
+#loading-spinner p {
+    margin-top: 15px;
+    font-size: 1em;
+    color: #333;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教師歷年輪動紀錄</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/work.css">
+</head>
+<body>
+    <div id="loading-spinner" class="hidden">
+        <div class="spinner"></div>
+        <p>資料處理中，請稍候...</p>
+    </div>
+    <div class="web-container">
+        <form id="rotation-form">
+            <div class="teacher-info">
+                <p>登入教師：<span id="teacher-name-display"></span></p>
+            </div>
+            <div class="card">
+                <h2>歷年輪動紀錄</h2>
+                <table id="rotation-table">
+                    <thead>
+                        <tr id="rotation-header">
+                            <!-- 學年度將由 JavaScript 動態生成 -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="rotation-content">
+                            <!-- 工作內容將由 JavaScript 動態生成 -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" id="copy-previous">與前學年度相同</button>
+            <div class="card">
+                <h2>填入與上傳本學年度職務</h2>
+                <div class="dropdown-group">
+                    <label for="class-teacher">級任：</label>
+                    <select id="class-teacher" name="classTeacher">
+                        <option value="">請選擇</option>
+                        <option value="低年級導師">低年級導師</option>
+                        <option value="中年級導師">中年級導師</option>
+                        <option value="高年級導師">高年級導師</option>
+                        <option value="低年級導師(接幫班)">低年級導師(接棒班)</option>
+                        <option value="中年級導師(接幫班)">高年級導師(接棒班)</option>
+                        <option value="高年級導師(接幫班)">高年級導師(接棒班)</option>
+                    </select>
+                    <label for="subject-teacher">科任：</label>
+                    <select id="subject-teacher" name="subjectTeacher">
+                        <option value="">請選擇</option>
+                        <option value="生活科任">生活科任</option>
+                        <option value="英語科任">英語科任</option>
+                        <option value="數學科任">社會科任</option>
+                        <option value="自然科任">自然科任</option>
+                        <option value="體育科任">體育科任</option>
+                        <option value="藝術科任">藝術科任</option>
+                        <option value="藝術科任">專題科任</option>
+                    </select>
+                    <label for="admin">行政：</label>
+                    <select id="admin" name="admin">
+                        <option value="">請選擇</option>
+                        <option value="主任">主任</option>
+                        <option value="組長">組長</option>
+                    </select>
+                    <label for="other">其他：</label>
+                    <select id="other" name="other">
+                        <option value="">請選擇</option>
+                        <option value="留職停薪">留職停薪</option>
+                    </select>
+                </div>
+                <button type="button" id="confirm-new-year">填入本學期資料</button>
+                <button type="submit">上傳並重新計算</button>
+                <button type="button" class="logout-button" onclick="location.href='index.html'">登出</button>
+                <div class="score-info">
+                    <!-- 總分將由 JavaScript 動態生成 -->
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="js/work.js"></script>
+</body>
+</html>
