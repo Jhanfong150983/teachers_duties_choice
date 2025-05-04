@@ -61,9 +61,6 @@
     white-space: nowrap; /* 防止文字換行 */
   }
 
-.card fieldset label:nth-child(5) {
-    flex-basis: 100%; /* 強制第四個元素換行 */
-}
 
 .card label {
     display: block;
@@ -149,4 +146,195 @@ textarea {
     margin-top: 0px;
     margin-bottom: 10px;
     color: #ff0000;
+}
+
+/* 更小螢幕的優化 */
+@media (max-width: 480px) {
+    /* 主容器樣式 */
+.web-container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    margin: 60px auto 0; /* 調整間距並水平居中 */
+    width: 95%; /* 在手機上使用更大比例 */
+    max-width: 1200px; /* 限制最大寬度 */
+    max-height: 85vh; /* 限制最大高度為視窗的 85% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 上對齊 */
+    overflow-y: auto; /* 允許垂直滾動 */
+}
+
+.web-container h1 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.web-container h3 {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #333;
+    width: 100%;
+    text-align: left;
+}
+
+/* 卡片容器與卡片樣式 */
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 居中顯示 */
+    gap: 20px; /* 卡片之間的間距 */
+}
+
+.card {
+    flex: 1 1 300px; /* 更適合響應式的基礎寬度 */
+    max-width: 100%; /* 允許在小螢幕上佔據全寬 */
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* 隱藏溢出的內容 */
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card fieldset {
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    gap: 1rem;
+    border: none; /* 移除預設邊框 */
+    padding: 0; /* 移除預設內邊距 */
+    margin: 0; /* 移除預設外邊距 */
+}
+
+.card fieldset label {
+    width: 50%; /* 確保標籤佔滿整行 */
+}
+
+/* 表單元素樣式 */
+.card label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.card input[type="text"],
+.card input[type="email"] {
+    width: 100%; /* 填滿容器 */
+    padding: 12px 10px; /* 增加高度，方便觸控 */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.card input[type="checkbox"] {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px; /* 增加尺寸以便於觸控 */
+}
+
+.option-group {
+    width: 100%;  /* 獨佔一整行 */
+    margin-bottom: 10px;
+}
+
+.option-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 5px 0; /* 增加可點擊區域 */
+}
+
+/* 按鈕樣式 */
+.button-wrapper {
+    display: flex;
+    flex-direction: row; /* 預設為水平排列 */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap; /* 在需要時允許換行 */
+}
+
+button {
+    padding: 0.75em 2em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #3f8efc;
+    color: white;
+    cursor: pointer;
+    min-width: 120px; /* 確保按鈕有合理的最小寬度 */
+    touch-action: manipulation; /* 改善行動裝置上的點擊體驗 */
+}
+
+button:hover, button:active {
+    background-color: #336fcc;
+}
+
+.card button {
+    width: 100%;
+    padding: 12px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card button:hover, .card button:active {
+    background-color: #0056b3;
+}
+
+/* 文本區域樣式 */
+textarea {
+    width: 100% !important;
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    resize: vertical;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit; /* 繼承父元素的字體 */
+}
+
+.text-red {
+    font-size: 0.9rem;
+    margin: 5px 0 10px;
+    color: #ff0000;
+}
+}
+
+/* 確保針對不同設備的安全區域 */
+@supports (padding: max(0px)) {
+    .web-container {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+    }
+}
+
+/* 防止iOS上的縮放問題 */
+@media screen and (max-device-width: 480px) {
+    input, select, textarea {
+        font-size: 16px; /* 防止iOS上自動縮放 */
+    }
 }
