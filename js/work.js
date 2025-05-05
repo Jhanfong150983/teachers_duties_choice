@@ -128,7 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
             action: 'getTeacherScores',
             teacherName: teacherName
         });
-
+        
+        console.log(`${baseURL}?${params.toString()}`);
+        
         fetch(`${baseURL}?${params.toString()}`)
             .then(response => response.json())
             .then(data => {
