@@ -132,10 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`${baseURL}?${params.toString()}`);
         
         fetch(`${baseURL}?${params.toString()}`)
-            .then(response => response.json())
-            .then(data => {
+            .then(response => response.text()) // 先以純文字取回
+            .then(text => {
+                console.log('Raw response:', text);
+                const data = JSON.parse(text); // 手動解析 JSON
                 if (data.success) {
-                    console.log('Teacher Data:', data); // Debug: 檢查返回的數據
+                    console.log('Teacher Data:', data);
                     renderTeacherData(data.records, data.scores);
                 } else {
                     alert(data.message || '無法獲取教師資料');
