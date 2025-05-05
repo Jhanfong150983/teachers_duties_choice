@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 從後端獲取教師資料
     function fetchTeacherData(teacherName) {
         showLoading();
-        const baseURL = 'https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec';
+        const baseURL = 'https://script.google.com/macros/s/AKfycbwvtY1OCFZ7O8PNau02QGQCuUK42rBTcbVT2eYHEZgujRql_S4PcOo4ELvXP7oh7G3jSg/exec';
         const params = new URLSearchParams({
             action: 'getTeacherScores',
             teacherName: teacherName
