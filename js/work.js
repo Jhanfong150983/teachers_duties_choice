@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const teacherNameDisplay = document.getElementById('teacher-name-display');
     const confirmNewYearButton = document.getElementById('confirm-new-year');
 
+    fetchTeacherData(teacherName);
+    
     // 計算最新年份（西元年轉民國年）
     const currentYear = new Date().getFullYear(); // 取得西元年
     const ChinalatestYear = currentYear - 1911; // 轉換為民國年
