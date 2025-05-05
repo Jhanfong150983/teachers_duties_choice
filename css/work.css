@@ -45,6 +45,7 @@ td:first-child, th:first-child {
 
 /* 提交按鈕 */
 button[type="submit"] {
+    margin-top: 20px
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
