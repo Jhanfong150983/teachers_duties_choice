@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初始化
     const teacherName = localStorage.getItem('teacherName');
+    const teacherMail = localStorage.getItem('teacherMail');
+    const teacherID = teacherName + "_" + teacherMail;
     if (!teacherName) {
         alert('教師姓名缺失，請重新登入');
         window.location.href = 'index.html';
@@ -28,11 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 顯示教師名稱
     teacherNameDisplay.textContent = teacherName;
 
-    fetchTeacherData(teacherName);
+    fetchTeacherData(teacherID);
     setupDropdownLogic();
-
-    
-    
     
     console.log('最新年份:', ChinalatestYear);
     console.log('前一年份:', latest1Year);
@@ -135,14 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
         rotationContent.appendChild(scoreRow);
     }
 
+    
 
     // 從後端獲取教師資料
-    function fetchTeacherData(teacherName) {
+    function fetchTeacherData(teacherID) {
         showLoading();
-        const baseURL = 'https://script.google.com/macros/s/AKfycbwvtY1OCFZ7O8PNau02QGQCuUK42rBTcbVT2eYHEZgujRql_S4PcOo4ELvXP7oh7G3jSg/exec';
+        const baseURL = 'https://script.google.com/macros/s/AKfycbwKVaSA8pkE_oqaTvMJSzVaF0fmqMhMI75sBuWf19OrfU10LpLwhnyCQy2p8yxWHBfTqA/exec';
         const params = new URLSearchParams({
             action: 'getTeacherScores',
-            teacherName: teacherName
+            teacherID
         });
         
         console.log(`${baseURL}?${params.toString()}`);
@@ -243,10 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             showLoading();
-            const baseURL = 'https://script.google.com/macros/s/AKfycbwHmvXWfRDMB1XalmOsLpAB2HtrmQqd2wozekaKU28WdPB_gTOGxJksXS-oTY_E3gdO/exec';
+            const baseURL = 'https://script.google.com/macros/s/AKfycbwKVaSA8pkE_oqaTvMJSzVaF0fmqMhMI75sBuWf19OrfU10LpLwhnyCQy2p8yxWHBfTqA/exec';
             const params = new URLSearchParams({
                 action: 'updateRotationRecord',
-                teacherName: localStorage.getItem('teacherName'),
+                teacherID,
                 year: latest1Year,
                 content: content
             });
@@ -348,10 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 從後端獲取教師總分功能
     function fetchTeacherTotalScore(teacherName) {
         showLoading();
-        const baseURL = 'https://script.google.com/macros/s/AKfycbwHmvXWfRDMB1XalmOsLpAB2HtrmQqd2wozekaKU28WdPB_gTOGxJksXS-oTY_E3gdO/exec';
+        const baseURL = 'https://script.google.com/macros/s/AKfycbwKVaSA8pkE_oqaTvMJSzVaF0fmqMhMI75sBuWf19OrfU10LpLwhnyCQy2p8yxWHBfTqA/exec';
         const params = new URLSearchParams({
             action: 'getTeacherTotalScore',
-            teacherName: teacherName
+            teacherID
         });
 
         fetch(`${baseURL}?${params.toString()}`)

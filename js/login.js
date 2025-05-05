@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('teacherName');
     const loginForm = document.getElementById('login-form');
     const teacherNameInput = document.getElementById('teacher-name');
+    const teachermailInput = document.getElementById('teacher-mail');
     const passwordInput = document.getElementById('password');
     const loadingSpinner = document.getElementById('loading-spinner');
 
@@ -55,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const teacherName = teacherNameInput.value.trim();
+        const teacherMail = teachermailInput.value.trim();
         const password = passwordInput.value;
+        const id = `${teacherName}_${teacherMail}`;
 
         if (!teacherName || !password) {
             alert('請輸入教師名稱和密碼');
@@ -66,20 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading();
 
         // 發送請求到 Google Apps Script
-        const baseURL = 'https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec';
+        const baseURL = 'https://script.google.com/macros/s/AKfycbzy0muNTzYRCxdcDMkd_8MvwYK7RUpsNDKjuVGiJhFnPGa73VnaAeUEHSZxHojkvbZpdg/exec';
         const params = new URLSearchParams({
             action: 'login',
-            teacherName: teacherName,
+            id: id,
             password: password
         });
         const url = `${baseURL}?${params.toString()}`;
-
+        console.log(url); // Log the URL for debugging
         fetch(url)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     // 記住教師姓名
                     localStorage.setItem('teacherName', teacherName);
+                    localStorage.setItem('teacherMail', teacherMail);
 
                     // 根據教師姓名判斷跳轉頁面
                     if (teacherName.toLowerCase() === 'admin') {

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('teacher-data-form');
     const teacherNameInput = document.getElementById('teacher-name');
+    const teacherMailInput = document.getElementById('teacher-mail');
     const otherCheckbox = document.getElementById('other-checkbox');
     const otherLanguageText = document.getElementById('other-language-text');
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -37,7 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 從 localStorage 中獲取教師姓名
     const teacherName = localStorage.getItem('teacherName') || '';
+    console.log('教師姓名:', teacherName); // 調試訊息
     teacherNameInput.value = teacherName;
+
+    const teacherMail = localStorage.getItem('teacherMail') || '';
+    console.log('教師信箱:', teacherMail); // 調試訊息
+    teacherMailInput.value = teacherMail;
+
+    const teacherID = teacherName+"_"+teacherMail;
 
     if (!teacherName) {
         alert('教師姓名缺失，請重新登入');
@@ -59,17 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showLoading();
 
     const queryParams = new URLSearchParams();
-
-    // ✅ 加入教師姓名（從 localStorage）
-    const teacherName = localStorage.getItem("teacherName");
-    if (!teacherName) {
-        alert("找不到教師姓名！");
-        hideLoading();
-        return;
-    }
-    queryParams.append("teacherName", teacherName);
-
-    // ✅ 加入 action 名稱
+    queryParams.append("teacherID", teacherID);
     queryParams.append("action", "updateTeacherData");
 
     // ✅ 遍歷所有欄位，包括空值與未勾選 checkbox
@@ -83,8 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxvJY_YbP4YabcLOyUaBPKW7oylb7uSPjzF6eUKpw4dd3Vsfjdl1_7CHsBZpusb4HE3Jw/exec";
     const fullURL = `${scriptURL}?${queryParams.toString()}`;
+    console.log("API URL:", fullURL); // 調試訊息
 
     fetch(fullURL)
         .then(response => response.json())
@@ -105,8 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec";
-    const url = `${scriptURL}?action=getTeacherData&teacherName=${encodeURIComponent(teacherName)}`;
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxvJY_YbP4YabcLOyUaBPKW7oylb7uSPjzF6eUKpw4dd3Vsfjdl1_7CHsBZpusb4HE3Jw/exec";
+    const url = `${scriptURL}?action=getTeacherData&teacherID=${encodeURIComponent(teacherID)}`;
+    console.log("API URL:", url); // 調試訊息
 
     showLoading();
 

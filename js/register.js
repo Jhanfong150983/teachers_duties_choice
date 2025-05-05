@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
     const registerPassword = document.getElementById('register-password');
+    const registerEmail = document.getElementById('register-mail');
     const confirmPassword = document.getElementById('confirm-password');
     const registerName = document.getElementById('register-name');
-    const submitButton = registerForm.querySelector('button[type="submit"]');
     const togglePasswordIcons = document.querySelectorAll('.toggle-password');
     const loadingSpinner = document.getElementById('loading-spinner');
 
@@ -151,16 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const teacherName = registerName.value.trim();
         const password = registerPassword.value;
+        const mail = registerEmail.value.trim();
+
     
         // 顯示等待畫面
         showLoading();
     
         // 使用 URL GET 傳送資料
-        const baseURL = 'https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec';
+        const baseURL = 'https://script.google.com/macros/s/AKfycbykm0HcpGTsnIMsz_Ac6IOUhe3jmsO6QcFAey-PY6DxRUcoxFu4o8uL2SwrU4eqr1okNA/exec';
         const params = new URLSearchParams({
             action: 'register', // ✅ 可輕易更改為 'login'、'check' 等
             teacherName: teacherName,
-            password: password
+            password: password,
+            mail: mail
+
         });
         const url = `${baseURL}?${params.toString()}`;
         console.log(params.toString()); // Debug: 檢查參數是否正確
