@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzyZ0MQi6UrFr2GTHUpvLSBsp8lnaMXaVZJzKaSfpcdpLx6Pqx7-_KKT-IxirftlBPzHw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec";
     const fullURL = `${scriptURL}?${queryParams.toString()}`;
 
     fetch(fullURL)
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzyZ0MQi6UrFr2GTHUpvLSBsp8lnaMXaVZJzKaSfpcdpLx6Pqx7-_KKT-IxirftlBPzHw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec";
     const url = `${scriptURL}?action=getTeacherData&teacherName=${encodeURIComponent(teacherName)}`;
 
     showLoading();
