@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingSpinner = document.getElementById('loading-spinner');
     const teacherNameDisplay = document.getElementById('teacher-name-display');
     const confirmNewYearButton = document.getElementById('confirm-new-year');
-
-    fetchTeacherData(teacherName);
     
     // 計算最新年份（西元年轉民國年）
     const currentYear = new Date().getFullYear(); // 取得西元年
@@ -20,6 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const latest2Year = ChinalatestYear - 2; // 前兩年
     let previousContent = ''; // 儲存前一年的工作內容
 
+    // 初始化
+    const teacherName = localStorage.getItem('teacherName');
+    if (!teacherName) {
+        alert('教師姓名缺失，請重新登入');
+        window.location.href = 'index.html';
+        return;
+    }
+    // 顯示教師名稱
+    teacherNameDisplay.textContent = teacherName;
+
+    fetchTeacherData(teacherName);
+    setupDropdownLogic();
+
+    
+    
+    
     console.log('最新年份:', ChinalatestYear);
     console.log('前一年份:', latest1Year);
 
@@ -153,17 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideLoading();
             });
     }
-    // 初始化
-    const teacherName = localStorage.getItem('teacherName');
-    if (!teacherName) {
-        alert('教師姓名缺失，請重新登入');
-        window.location.href = 'index.html';
-        return;
-    }
-
-    // 顯示教師名稱
-    teacherNameDisplay.textContent = teacherName;
-
+    
+    // 帶入與前學年度相同資料按鈕
     copyPreviousButton.addEventListener('click', () => {
         const yearCells = Array.from(rotationHeader.querySelectorAll('th'));
 
@@ -218,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 提交更新最新一年紀錄
+    // 提交更新最新一年紀錄按鈕
     rotationForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -268,8 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    setupDropdownLogic();
-
+    
+    //帶入自選工作內容按鈕
     confirmNewYearButton.addEventListener('click', () => {
         const classTeacher = classTeacherSelect.value;
         const subjectTeacher = subjectTeacherSelect.value;
@@ -325,23 +330,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    
 
-    // 渲染教師總分
-function renderTotalScore(totalScore) {
-    const scoreContainer = document.querySelector('.score-info'); // 獲取 .score-info 容器
-    if (!scoreContainer) {
-        console.error('未找到 .score-info 容器');
-        return;
+    // 渲染教師總分功能
+    function renderTotalScore(totalScore) {
+        const scoreContainer = document.querySelector('.score-info'); // 獲取 .score-info 容器
+        if (!scoreContainer) {
+            console.error('未找到 .score-info 容器');
+            return;
+        }
+    
+        const scoreElement = document.createElement('div');
+        scoreElement.className = 'score';
+        scoreElement.textContent = `總分：${totalScore}`;
+        scoreContainer.appendChild(scoreElement); // 將總分添加到 .score-info 容器中
     }
 
-    const scoreElement = document.createElement('div');
-    scoreElement.className = 'score';
-    scoreElement.textContent = `總分：${totalScore}`;
-    scoreContainer.appendChild(scoreElement); // 將總分添加到 .score-info 容器中
-}
-
-// 從後端獲取教師總分
+    // 從後端獲取教師總分功能
     function fetchTeacherTotalScore(teacherName) {
         showLoading();
         const baseURL = 'https://script.google.com/macros/s/AKfycbwHmvXWfRDMB1XalmOsLpAB2HtrmQqd2wozekaKU28WdPB_gTOGxJksXS-oTY_E3gdO/exec';
