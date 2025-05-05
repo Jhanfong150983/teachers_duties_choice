@@ -151,12 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideLoading();
             });
     }
-
-    // 重新載入歷年輪動紀錄
-    function fetchRotationRecords(teacherName) {
-        fetchTeacherData(teacherName);
-    }
-
     // 初始化
     const teacherName = localStorage.getItem('teacherName');
     if (!teacherName) {
@@ -255,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(data => {
                     if (data.success) {
                         alert('最新一年資料已成功上傳！');
-                        fetchRotationRecords(localStorage.getItem('teacherName')); // 重新載入紀錄
                         window.location.href = 'work.html';
                     } else {
                         alert(data.message || '更新失敗，請稍後再試');
