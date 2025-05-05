@@ -168,9 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 顯示教師名稱
     teacherNameDisplay.textContent = teacherName;
 
-    // 獲取教師資料並渲染到表格
-    fetchTeacherData(teacherName);
-
     copyPreviousButton.addEventListener('click', () => {
         const yearCells = Array.from(rotationHeader.querySelectorAll('th'));
 
