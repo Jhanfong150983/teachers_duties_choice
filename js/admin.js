@@ -2,7 +2,7 @@ const tableBody = document.querySelector('#teacher-table tbody');
 document.addEventListener('DOMContentLoaded', () => {
   const loading = document.getElementById('loading-spinner');
   
-  const baseUrl = 'https://script.google.com/macros/s/AKfycbx1Iq3SNpX1pOZNgLHbCWvWOcTfdasgzM7A3Nhl9EL15guSZjrwAD7fo8jt6k0RD-g30Q/exec';
+  const baseUrl = 'https://script.google.com/macros/s/AKfycbzVVWL9jrZ7fO9ZVeNVpE0B-dB0UBH0HVngN8fLNZKcalGPmhlSgJwVmi8aL34_HDey1w/exec';
   const action = 'getTeacherScoreAndPreference';
   const fullUrl = `${baseUrl}?action=${action}`;
   loading.classList.remove('hidden');
