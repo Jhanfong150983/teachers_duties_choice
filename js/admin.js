@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const baseUrl = 'https://script.google.com/macros/s/AKfycbwGlNiysZqQNGC6xJRRdag8LZdP0IXbtnMrbCtuquAqXa5wHr85HwFZU4-BaC7h-B7VKg/exec';
   const action = 'getTeacherScoreAndPreference';
   const fullUrl = `${baseUrl}?action=${action}`;
+  
   loading.classList.remove('hidden');
   fetch(fullUrl)
     .then(response => response.json())
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const subjectTeachers = [];
       const nonSubjectTeachers = [];
       teacherData.forEach(teacher => {
-        if (teacher.firstChoice.includes('科任')) {
+        if (typeof firstChoice === 'string' && firstChoice.includes('科任')) {
           subjectTeachers.push(teacher);
         } else {
           nonSubjectTeachers.push(teacher);
@@ -44,12 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         tableBody.appendChild(tr);
       });
-      // 從 localStorage 恢復上次選擇的格子
-      restoreSelectedCells();
+      if (typeof restoreSelectedCells === 'function') {
+        restoreSelectedCells();
+      }
       
-      // 更新統計
-      updateStatistics();
-      
+      if (typeof updateStatistics === 'function') {
+        updateStatistics();
+      }
       // 為每個表格的選擇欄位添加點擊事件
       tableBody.addEventListener('click', (e) => {
         if (e.target.classList.contains('choice')) {
