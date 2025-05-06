@@ -8,30 +8,39 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div id="admin-container-data">
-    <h1>教師積分與志願總覽</h1>
-    <div id="table-container">
-      <table id="teacher-table">
-        <thead>
-          <tr>
-            <th>教師姓名</th>
-            <th>總分</th>
-            <th>第一志願</th>
-            <th>第二志願</th>
-            <th>第三志願</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 資料將由 JS 動態插入 -->
-        </tbody>
-      </table>
+<div class="admin-wrapper">
+  <div class="admin-top">
+    <div id="admin-container-data">
+      <h1>教師積分與志願總覽</h1>
+      <div id="table-container">
+        <table id="teacher-table">
+          <thead>
+            <tr>
+              <th>教師姓名</th>
+              <th>總分</th>
+              <th>第一志願</th>
+              <th>第二志願</th>
+              <th>第三志願</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 資料將由 JS 動態插入 -->
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
   <div id="admin-container-work">
     <h1>教師職務安排統計</h1>
   </div>
+</div>
 
+  <div id="question-box">
+    <h2>有問題嗎？請輸入下方</h2>
+    <textarea id="question-input" placeholder="請輸入您的問題..." rows="4"></textarea>
+    <button id="submit-question">送出問題</button>
+  </div>
+</div>  
   
 
   <div id="loading-spinner" class="hidden">

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.tableBody = document.querySelector('#teacher-table tbody');
   const loading = document.getElementById('loading-spinner');
   
-  const baseUrl = 'https://script.google.com/macros/s/AKfycbzLna1EJpChScwihpUwEAeUySQ_KRI3vnntycvN7dymkEdjf2ylE_nALcdhmVhjGN_4GA/exec';
+  const baseUrl = 'https://script.google.com/macros/s/AKfycbyTOoNkqfwNQZI7ftNTbgzBkvdJOnIW-UDJS_W3tNZdsSO1NireBFXTf-Bp3o-Wf5d1Ow/exec';
   const action = 'getTeacherScoreAndPreference';
   const fullUrl = `${baseUrl}?action=${action}`;
   
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       const teacherData = result.data;
+      console.log(teacherData);
       // 分類教師：科任與非科任
       const subjectTeachers = [];
       const nonSubjectTeachers = [];
@@ -275,3 +276,14 @@ function updateStatistics() {
 function logout() {
     window.location.href = 'index.html';
 }
+
+document.getElementById('submit-question').addEventListener('click', function() {
+  const question = document.getElementById('question-input').value.trim();
+  if (question) {
+    alert("已送出問題：" + question);
+    // TODO: 這裡可以改為傳送到 Google Sheets 或伺服器
+    document.getElementById('question-input').value = "";
+  } else {
+    alert("請輸入問題內容！");
+  }
+});

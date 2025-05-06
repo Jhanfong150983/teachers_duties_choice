@@ -148,6 +148,73 @@ textarea {
     color: #ff0000;
 }
 
+.input-group {
+    height: 50px;
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    align-items: center;
+    gap: 5px;
+  }
+
+  .clean-button {
+    all: unset; /* 重設所有預設樣式 */
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .clean-button:hover {
+    background-color: #0056b3;
+    }
+
+    #add-button {
+        width: 100%;
+      }
+      
+    #add-button:disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+        border: 1px solid #999;
+    }
+
+    .select-style{
+        width: 50%;
+        height:30px; /* 確保選擇框高度與其他元素一致 */
+        
+    }
+
+    .input-style{
+        margin-bottom: 0px !important;
+        width: 100%;
+        height: 10px; /* 確保選擇框高度與其他元素一致 */
+    }
+
+    .button-style {
+        margin-top: 0px !important;
+        width: 30px !important;
+        height: 30px !important; /* 確保按鈕大小一致 */
+        background-color: transparent !important;  /* 透明背景 */
+        padding: 0px !important;
+        border: none;                   /* 無邊框 */
+        cursor: pointer;                /* 游標變為指針 */
+        font-size: 16px;                 /* 適當的字體大小 */
+        color: #ff0000;                  /* X 的顏色設為紅色 */
+        display: inline-block;           /* 讓按鈕與其他元素並排顯示 */
+        line-height: 16px;               /* 調整字形行高，讓 X 顯得更居中 */
+        border-radius: 50%;              /* 圓形背景邊框 */
+      }
+      
+      .button-style:hover {
+        background-color: rgba(255, 0, 0, 0.1);  /* 滑鼠懸停時背景顏色 */
+      }
+      
+      .button-style:focus {
+        outline: none;                  /* 去除點擊後的邊框 */
+      }
+
 /* 更小螢幕的優化 */
 @media (max-width: 480px) {
     /* 主容器樣式 */
