@@ -1,5 +1,5 @@
-const tableBody = document.querySelector('#teacher-table tbody');
 document.addEventListener('DOMContentLoaded', () => {
+  const tableBody = document.querySelector('#teacher-table tbody');
   const loading = document.getElementById('loading-spinner');
   
   const baseUrl = 'https://script.google.com/macros/s/AKfycbzVVWL9jrZ7fO9ZVeNVpE0B-dB0UBH0HVngN8fLNZKcalGPmhlSgJwVmi8aL34_HDey1w/exec';
