@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const tableBody = document.querySelector('#teacher-table tbody');
+  // 將 tableBody 設為全局變量
+  window.tableBody = document.querySelector('#teacher-table tbody');
   const loading = document.getElementById('loading-spinner');
   
   const baseUrl = 'https://script.google.com/macros/s/AKfycbzLna1EJpChScwihpUwEAeUySQ_KRI3vnntycvN7dymkEdjf2ylE_nALcdhmVhjGN_4GA/exec';
@@ -20,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const subjectTeachers = [];
       const nonSubjectTeachers = [];
       teacherData.forEach(teacher => {
+        // 修復：確保使用 teacher.firstChoice 而不是未定義的 firstChoice
+        const firstChoice = teacher.firstChoice || '';
         if (typeof firstChoice === 'string' && firstChoice.includes('科任')) {
           subjectTeachers.push(teacher);
         } else {
@@ -27,33 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       // 根據分數進行排序，從高到低
-      subjectTeachers.sort((a, b) => b.score - a.score);
-      nonSubjectTeachers.sort((a, b) => b.score - a.score);
+      subjectTeachers.sort((a, b) => (b.score || 0) - (a.score || 0));
+      nonSubjectTeachers.sort((a, b) => (b.score || 0) - (a.score || 0));
       // 合併排序後的教師數據，非科任在前，科任在後
       const sortedTeachers = [...nonSubjectTeachers, ...subjectTeachers];
       // 清空表格並重新渲染
-      tableBody.innerHTML = '';
+      window.tableBody.innerHTML = '';
       // 顯示排名
       sortedTeachers.forEach((row, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${row.teacherName ?? ''}</td>
-          <td>${row.score ?? 0}</td>
-          <td class="choice" data-column="firstChoice" data-teacher="${row.teacherName}">${row.firstChoice ?? ''}</td>
-          <td class="choice" data-column="secondChoice" data-teacher="${row.teacherName}">${row.secondChoice ?? ''}</td>
-          <td class="choice" data-column="thirdChoice" data-teacher="${row.teacherName}">${row.thirdChoice ?? ''}</td>
+          <td>${row.teacherName || ''}</td>
+          <td>${row.score || 0}</td>
+          <td class="choice" data-column="firstChoice" data-teacher="${row.teacherName}">${row.firstChoice || ''}</td>
+          <td class="choice" data-column="secondChoice" data-teacher="${row.teacherName}">${row.secondChoice || ''}</td>
+          <td class="choice" data-column="thirdChoice" data-teacher="${row.teacherName}">${row.thirdChoice || ''}</td>
         `;
-        tableBody.appendChild(tr);
+        window.tableBody.appendChild(tr);
       });
-      if (typeof restoreSelectedCells === 'function') {
-        restoreSelectedCells();
-      }
       
-      if (typeof updateStatistics === 'function') {
-        updateStatistics();
-      }
+      // 恢復選擇的單元格
+      restoreSelectedCells();
+      
+      // 更新統計
+      updateStatistics();
+      
       // 為每個表格的選擇欄位添加點擊事件
-      tableBody.addEventListener('click', (e) => {
+      window.tableBody.addEventListener('click', (e) => {
         if (e.target.classList.contains('choice')) {
           const clickedCell = e.target;
           const row = clickedCell.closest('tr');
@@ -89,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 儲存選擇的格子至 localStorage
 function saveSelectedCell(rowIndex, column) {
   const selectedCells = JSON.parse(localStorage.getItem('selectedCells') || '{}');
-  const row = tableBody.rows[rowIndex];
+  const row = window.tableBody.rows[rowIndex];
   const teacherName = row.cells[0].textContent.trim();
   const choiceContent = row.querySelector(`[data-column="${column}"]`).textContent.trim();
   
@@ -109,7 +112,7 @@ function saveSelectedCell(rowIndex, column) {
 // 從 localStorage 移除選擇的格子
 function removeSelectedCell(rowIndex) {
   const selectedCells = JSON.parse(localStorage.getItem('selectedCells') || '{}');
-  const row = tableBody.rows[rowIndex];
+  const row = window.tableBody.rows[rowIndex];
   const teacherName = row.cells[0].textContent.trim();
   
   delete selectedCells[teacherName];
@@ -122,7 +125,7 @@ function cleanupStorage() {
   const currentTeachers = [];
   
   // 獲取當前表格中所有教師名稱
-  Array.from(tableBody.rows).forEach(row => {
+  Array.from(window.tableBody.rows).forEach(row => {
     const teacherName = row.cells[0].textContent.trim();
     currentTeachers.push(teacherName);
   });
@@ -142,46 +145,33 @@ function cleanupStorage() {
   }
 }
 
-// 恢復選擇的格子
+// 恢復選擇的格子 - 修正版本，統一合併兩個版本
 function restoreSelectedCells() {
-  const selectedCells = JSON.parse(localStorage.getItem('selectedCells') || '{}');
-  
-  // 遍歷表格所有行
-  Array.from(tableBody.rows).forEach(row => {
-    const teacherName = row.cells[0].textContent.trim();
-    
-    // 檢查此教師是否有保存的選擇
-    if (selectedCells[teacherName]) {
-      // 相容新舊格式
-      const column = selectedCells[teacherName].column || selectedCells[teacherName];
-      const cell = row.querySelector(`[data-column="${column}"]`);
-      if (cell) {
-        cell.classList.add('selected');
-      }
-    }
-  });
-  
-  // 清理不在當前表格中的數據
-  cleanupStorage();
-}
-
-//建立表格
-function restoreSelectedCells() {
-  // 請確保使用 window.tableBody 而不是 tableBody
-  // 從 localStorage 恢復選擇的單元格
   try {
-    const savedSelections = JSON.parse(localStorage.getItem('selectedCells') || '[]');
-    savedSelections.forEach(cell => {
-      const selector = `.choice[data-column="${cell.column}"][data-teacher="${cell.teacher}"]`;
-      const element = document.querySelector(selector);
-      if (element) {
-        element.classList.add('selected');
+    const selectedCells = JSON.parse(localStorage.getItem('selectedCells') || '{}');
+    
+    // 遍歷表格所有行
+    Array.from(window.tableBody.rows).forEach(row => {
+      const teacherName = row.cells[0].textContent.trim();
+      
+      // 檢查此教師是否有保存的選擇
+      if (selectedCells[teacherName]) {
+        // 相容新舊格式
+        const column = selectedCells[teacherName].column || selectedCells[teacherName];
+        const cell = row.querySelector(`[data-column="${column}"]`);
+        if (cell) {
+          cell.classList.add('selected');
+        }
       }
     });
+    
+    // 清理不在當前表格中的數據
+    cleanupStorage();
   } catch (error) {
     console.error('Error restoring selected cells:', error);
   }
 }
+
 // 更新統計資訊
 function updateStatistics() {
   const adminContainer = document.getElementById('admin-container-work');
@@ -189,8 +179,12 @@ function updateStatistics() {
   
   // 保留標題，清空其餘內容
   const title = adminContainer.querySelector('h1');
-  adminContainer.innerHTML = '';
-  adminContainer.appendChild(title);
+  if (title) {
+    adminContainer.innerHTML = '';
+    adminContainer.appendChild(title);
+  } else {
+    adminContainer.innerHTML = '';
+  }
   
   // 取得所有被選中的格子
   const selectedCells = document.querySelectorAll('.choice.selected');
@@ -202,7 +196,7 @@ function updateStatistics() {
   // 計算每個選擇的出現次數
   selectedCells.forEach(cell => {
     const choiceText = cell.textContent.trim();
-    const teacherName = cell.dataset.teacher;
+    const teacherName = cell.getAttribute('data-teacher');
     
     if (choiceText) {
       // 增加選擇計數
