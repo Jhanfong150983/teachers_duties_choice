@@ -165,6 +165,23 @@ function restoreSelectedCells() {
   cleanupStorage();
 }
 
+//建立表格
+function restoreSelectedCells() {
+  // 請確保使用 window.tableBody 而不是 tableBody
+  // 從 localStorage 恢復選擇的單元格
+  try {
+    const savedSelections = JSON.parse(localStorage.getItem('selectedCells') || '[]');
+    savedSelections.forEach(cell => {
+      const selector = `.choice[data-column="${cell.column}"][data-teacher="${cell.teacher}"]`;
+      const element = document.querySelector(selector);
+      if (element) {
+        element.classList.add('selected');
+      }
+    });
+  } catch (error) {
+    console.error('Error restoring selected cells:', error);
+  }
+}
 // 更新統計資訊
 function updateStatistics() {
   const adminContainer = document.getElementById('admin-container-work');
