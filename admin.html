@@ -30,28 +30,37 @@
       </div>
     </div>
 
-  <div id="admin-container-work">
-    <h1>教師職務安排統計</h1>
+    <div id="admin-container-work">
+      <h1>教師職務安排統計</h1>
+    </div>
   </div>
-</div>
 
+  <!-- 改進後的問題框 HTML 結構 -->
   <div id="question-box">
-    <h2>有問題嗎？請輸入下方</h2>
-    <textarea id="question-input" placeholder="請輸入您的問題..." rows="4"></textarea>
-    <button id="submit-question">送出問題</button>
+    <h2>您想瞭解學校老師的什麼狀況？</h2>
+    
+    <div class="input-container">
+      <textarea id="question-input" placeholder="請輸入您的問題，我將協助您分析教師資料..." rows="4"></textarea>
+    </div>
+    
+    <div class="button-container">
+      <button id="submit-question" onclick="askAI()">送出問題</button>
+      <span id="loading" class="loading">處理您的問題中...</span>
+    </div>
+    
+    <div id="ai-response"></div>
   </div>
-</div>  
-  
 
   <div id="loading-spinner" class="hidden">
     <div class="spinner"></div>
     <p>載入中，請稍候...</p>
   </div>
 
+  <!-- 新增：固定在右下角的登出按鈕 -->
+  <div class="corner-logout">
+    <button class="logout-button" onclick="logout()">登出</button>
+  </div>
+
   <script src="js/admin.js"></script>
 </body>
-
-<footer>
-    <button class="logout-button" onclick="logout()">登出</button>
-</footer>
 </html>

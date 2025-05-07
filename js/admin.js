@@ -277,13 +277,71 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-document.getElementById('submit-question').addEventListener('click', function() {
-  const question = document.getElementById('question-input').value.trim();
-  if (question) {
-    alert("已送出問題：" + question);
-    // TODO: 這裡可以改為傳送到 Google Sheets 或伺服器
-    document.getElementById('question-input').value = "";
-  } else {
-    alert("請輸入問題內容！");
+// 問題框相關JavaScript功能
+function askAI() {
+  const query = document.getElementById("question-input").value.trim();
+  // 取得問題輸入框的值
+  if (!query) {
+    alert("請輸入問題！");
+    return;
+  }
+  
+  // 顯示載入中狀態
+  document.getElementById("loading").style.display = "inline-flex";
+  document.getElementById("submit-question").disabled = true;
+  
+  // 清空上次回應，如果有的話
+  const aiResponseElement = document.getElementById("ai-response");
+  aiResponseElement.textContent = "";
+  
+  // 確保回應區域已經顯示出來
+  aiResponseElement.style.display = "block";
+
+  // API URL 和參數 (使用您的 Apps Script 部署 URL)
+  const url = "https://script.google.com/macros/s/AKfycbzbWWAIB7xquhEpxVysKi_GmyX54_YKkTHJQ2X9Qxfhfq1LVYQ8yoUB15GSvEyxZXd5mw/exec";
+  const params = {
+    action: "askAI",
+    query: query  // 傳送 query 作為參數
+  };
+
+  // 使用 URLSearchParams 格式化參數
+  const urlWithParams = `${url}?${new URLSearchParams(params).toString()}`;
+
+  // 發送 GET 請求
+  fetch(urlWithParams)
+    .then(response => response.text())
+    .then(data => {
+      // 隱藏載入中狀態
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("submit-question").disabled = false;
+      
+      // 顯示回應結果並添加動畫效果
+      aiResponseElement.innerHTML = data;  // 使用innerHTML以支持格式化文本
+      aiResponseElement.classList.add('active');
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("submit-question").disabled = false;
+      
+      // 顯示友好的錯誤訊息在回應區域
+      aiResponseElement.innerHTML = `<p class="error-message">發生錯誤，請稍後再試。</p>`;
+      aiResponseElement.classList.add('active');
+    });
+}
+
+// 監聽Enter鍵提交問題（可選功能）
+document.getElementById('question-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && e.ctrlKey) {
+    e.preventDefault();
+    askAI();
+  }
+});
+
+// 當頁面載入時，確保回應區域初始隱藏
+document.addEventListener('DOMContentLoaded', function() {
+  const aiResponseElement = document.getElementById("ai-response");
+  if (aiResponseElement.textContent.trim() === '') {
+    aiResponseElement.style.display = 'none';
   }
 });
