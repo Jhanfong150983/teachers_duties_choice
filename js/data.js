@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
     const fullURL = `${scriptURL}?${queryParams.toString()}`;
     console.log("API URL:", fullURL); // 調試訊息
 
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
     const url = `${scriptURL}?action=getTeacherData&teacherID=${encodeURIComponent(teacherID)}`;
     console.log("API URL:", url); // 調試訊息
 
