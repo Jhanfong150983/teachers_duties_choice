@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading();
 
         // 發送請求到 Google Apps Script
-        const baseURL = 'https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec';
+        const baseURL = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
         const params = new URLSearchParams({
             action: 'login',
             id: id,
