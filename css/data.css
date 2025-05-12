@@ -406,29 +406,69 @@ textarea {
     }
 }
 
-/* Safari 兼容性 Checkbox 樣式 */
-#other-language-text {
-    transition: all 0.3s ease;
-    visibility: hidden;
-    width: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-#other-language-text.visible {
-    visibility: visible;
-    width: auto;
-    padding: 0.375rem 0.75rem;
-}
-
-/* 確保 checkbox 和 label 有足夠的點擊區域 */
-.checkbox-container {
-    display: inline-flex;
-    align-items: center;
+/* Safari Checkbox 樣式修正 */
+input[type="checkbox"] {
+    -webkit-appearance: checkbox; /* 強制 Safari 顯示原生 checkbox */
+    -moz-appearance: checkbox; /* Firefox 兼容 */
+    appearance: checkbox; /* 標準寫法 */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
     cursor: pointer;
 }
 
-.checkbox-container input[type="checkbox"] {
-    margin-right: 0.5rem;
+/* 為了更好的用戶體驗，可以添加額外的視覺效果 */
+input[type="checkbox"]:checked {
+    background-color: #007bff; /* 選中時的背景色 */
+    border-color: #007bff; /* 選中時的邊框色 */
+}
+
+/* 如果使用自定義的 checkbox 樣式，可以增加這些 */
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
+}
+
+.custom-checkbox .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.custom-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }
