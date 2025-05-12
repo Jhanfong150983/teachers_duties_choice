@@ -5,28 +5,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const otherCheckbox = document.getElementById('other-checkbox');
     const otherLanguageText = document.getElementById('other-language-text');
     const loadingSpinner = document.getElementById('loading-spinner');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
-    // 修改 checkbox 顯示方法，增加 Safari 兼容性
-    function toggleOtherLanguageVisibility() {
-        // 使用 visibility 替代 display
-        otherLanguageText.style.visibility = otherCheckbox.checked ? 'visible' : 'hidden';
-        
-        // 如果未勾選，清空文字框
-        if (!otherCheckbox.checked) {
-            otherLanguageText.value = '';
-        }
-        
-        // 為 Safari 增加額外的樣式處理
-        otherLanguageText.style.position = 'relative';
-        otherLanguageText.style.width = otherCheckbox.checked ? 'auto' : '0';
-        otherLanguageText.style.padding = otherCheckbox.checked ? '0.375rem 0.75rem' : '0';
-    }
+    checkboxes.forEach(checkbox => {
+        // 強制 Safari 重繪
+        checkbox.addEventListener('change', function() {
+            // 臨時移除再添加 class 來觸發重繪
+            this.classList.add('force-repaint');
+            setTimeout(() => {
+                this.classList.remove('force-repaint');
+            }, 0);
+        });
 
-    // 修改事件監聽器
-    otherCheckbox.addEventListener('change', toggleOtherLanguageVisibility);
-
-    // 初始化時調用一次
-    toggleOtherLanguageVisibility();
+        // 添加可點擊區域
+        checkbox.addEventListener('click', function(e) {
+            // 確保點擊 label 也能觸發 checkbox
+            const label = this.parentElement.querySelector('label');
+            if (label && e.target === label) {
+                this.checked = !this.checked;
+            }
+        });
+    });
 
 
     // 顯示等待畫面
