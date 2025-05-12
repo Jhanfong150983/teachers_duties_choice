@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.tableBody = document.querySelector('#teacher-table tbody');
   const loading = document.getElementById('loading-spinner');
   
-  const baseUrl = 'https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec';
+  const baseUrl = 'https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec';
   const action = 'getTeacherScoreAndPreference';
   const fullUrl = `${baseUrl}?action=${action}`;
   
@@ -298,7 +298,7 @@ function askAI() {
   aiResponseElement.style.display = "block";
 
   // API URL 和參數 (使用您的 Apps Script 部署 URL)
-  const url = "https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec";
+  const url = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
   const params = {
     action: "askAI",
     query: query  // 傳送 query 作為參數
