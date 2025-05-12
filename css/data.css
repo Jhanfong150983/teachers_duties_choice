@@ -405,3 +405,30 @@ textarea {
         font-size: 16px; /* 防止iOS上自動縮放 */
     }
 }
+
+/* Safari 兼容性 Checkbox 樣式 */
+#other-language-text {
+    transition: all 0.3s ease;
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#other-language-text.visible {
+    visibility: visible;
+    width: auto;
+    padding: 0.375rem 0.75rem;
+}
+
+/* 確保 checkbox 和 label 有足夠的點擊區域 */
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
