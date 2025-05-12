@@ -6,6 +6,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const otherLanguageText = document.getElementById('other-language-text');
     const loadingSpinner = document.getElementById('loading-spinner');
     
+    // 修改 checkbox 顯示方法，增加 Safari 兼容性
+    function toggleOtherLanguageVisibility() {
+        // 使用 visibility 替代 display
+        otherLanguageText.style.visibility = otherCheckbox.checked ? 'visible' : 'hidden';
+        
+        // 如果未勾選，清空文字框
+        if (!otherCheckbox.checked) {
+            otherLanguageText.value = '';
+        }
+        
+        // 為 Safari 增加額外的樣式處理
+        otherLanguageText.style.position = 'relative';
+        otherLanguageText.style.width = otherCheckbox.checked ? 'auto' : '0';
+        otherLanguageText.style.padding = otherCheckbox.checked ? '0.375rem 0.75rem' : '0';
+    }
+
+    // 修改事件監聽器
+    otherCheckbox.addEventListener('change', toggleOtherLanguageVisibility);
+
+    // 初始化時調用一次
+    toggleOtherLanguageVisibility();
+
 
     // 顯示等待畫面
     function showLoading() {
