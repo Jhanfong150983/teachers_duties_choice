@@ -312,6 +312,38 @@ textarea {
     margin-right: 5px;
     width: 18px;
     height: 18px; /* 增加尺寸以便於觸控 */
+    -webkit-appearance: none;  /* 移除預設的外觀 */
+    appearance: none;  /* 移除預設的外觀 */
+    border: 2px solid #ccc;  /* 給checkbox加上邊框 */
+    border-radius: 4px;  /* 圓角 */
+    position: relative; /* 讓內部勾選顯示在框框內 */
+    cursor: pointer;  /* 點擊效果 */
+    transition: all 0.3s ease; /* 加入平滑過渡效果 */
+}
+
+.card input[type="checkbox"]:checked {
+    background-color: #007BFF;  /* 勾選時顯示藍色背景 */
+    border-color: #007BFF;  /* 邊框顏色 */
+}
+
+.card input[type="checkbox"]:checked::before {
+    content: "✔";  /* 勾選時顯示勾勾 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;  /* 勾勾顏色 */
+    font-size: 14px;
+    transition: opacity 0.3s ease; /* 平滑過渡效果 */
+}
+
+.card input[type="checkbox"]:not(:checked)::before {
+    content: "";  /* 沒勾選時，清除內容 */
+    opacity: 0;  /* 隱藏勾勾 */
 }
 
 .option-group {
@@ -404,71 +436,4 @@ textarea {
     input, select, textarea {
         font-size: 16px; /* 防止iOS上自動縮放 */
     }
-}
-
-/* Safari Checkbox 樣式修正 */
-input[type="checkbox"] {
-    -webkit-appearance: checkbox; /* 強制 Safari 顯示原生 checkbox */
-    -moz-appearance: checkbox; /* Firefox 兼容 */
-    appearance: checkbox; /* 標準寫法 */
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    cursor: pointer;
-}
-
-/* 為了更好的用戶體驗，可以添加額外的視覺效果 */
-input[type="checkbox"]:checked {
-    background-color: #007bff; /* 選中時的背景色 */
-    border-color: #007bff; /* 選中時的邊框色 */
-}
-
-/* 如果使用自定義的 checkbox 樣式，可以增加這些 */
-.custom-checkbox {
-    position: relative;
-    display: inline-block;
-}
-
-.custom-checkbox input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.custom-checkbox .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-    border-radius: 4px;
-}
-
-.custom-checkbox:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-.custom-checkbox input:checked ~ .checkmark {
-    background-color: #2196F3;
-}
-
-.custom-checkbox .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.custom-checkbox input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.custom-checkbox .checkmark:after {
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
 }

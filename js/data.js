@@ -5,27 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const otherCheckbox = document.getElementById('other-checkbox');
     const otherLanguageText = document.getElementById('other-language-text');
     const loadingSpinner = document.getElementById('loading-spinner');
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    
-    checkboxes.forEach(checkbox => {
-        // 強制 Safari 重繪
-        checkbox.addEventListener('change', function() {
-            // 臨時移除再添加 class 來觸發重繪
-            this.classList.add('force-repaint');
-            setTimeout(() => {
-                this.classList.remove('force-repaint');
-            }, 0);
-        });
 
-        // 添加可點擊區域
-        checkbox.addEventListener('click', function(e) {
-            // 確保點擊 label 也能觸發 checkbox
-            const label = this.parentElement.querySelector('label');
-            if (label && e.target === label) {
-                this.checked = !this.checked;
-            }
-        });
-    });
 
 
     // 顯示等待畫面
@@ -115,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxCD0eXK-_xAiHiZDiGJgcwGKCTYcZD1KEBZ-CIWHoBtqB7AQpV08_1FPk38T9IQTZqvg/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxl4muxmGpDLPvOuXQaCRYfgJK9Hc20QZJtDRu5ia_5tX7WoCoZhvQSIFrYSpRehdNqNg/exec";
     const fullURL = `${scriptURL}?${queryParams.toString()}`;
     console.log("API URL:", fullURL); // 調試訊息
 
@@ -138,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzBl4cqvuwSd67ObIXaCOuUWuLTJcseUNKIJpozZWQqtnc7SutZvkHxhq_xNxZwCG3KAA/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxl4muxmGpDLPvOuXQaCRYfgJK9Hc20QZJtDRu5ia_5tX7WoCoZhvQSIFrYSpRehdNqNg/exec";
     const url = `${scriptURL}?action=getTeacherData&teacherID=${encodeURIComponent(teacherID)}`;
     console.log("API URL:", url); // 調試訊息
 
