@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 從後端獲取教師資料
     function fetchTeacherData(teacherID) {
         showLoading();
-        const baseURL = 'https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec';
+        const baseURL = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
         const params = new URLSearchParams({
             action: 'getTeacherScores',
             teacherID
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             showLoading();
-            const baseURL = 'https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec';
+            const baseURL = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
             const params = new URLSearchParams({
                 action: 'updateRotationRecord',
                 teacherID,
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 從後端獲取教師總分功能
     function fetchTeacherTotalScore(teacherName) {
         showLoading();
-        const baseURL = 'https://script.google.com/macros/s/AKfycbxOXXjxTFvtRR48Nr-EHa_vUzcSis3mKPPVyEkr7w7U3IsK4jI1XHQI3yy-f4aHQVHydw/exec';
+        const baseURL = "https://script.google.com/macros/s/AKfycbwoK9YankcJiFnS0Kp4CUXxznHtRKQ6wuAZ_tZwUEOxQaB9fFpVclDkF2XOlLWJmfe_xg/exec";
         const params = new URLSearchParams({
             action: 'getTeacherTotalScore',
             teacherID
