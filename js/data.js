@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const teacherMail = localStorage.getItem('teacherMail') || '';
     console.log('教師信箱:', teacherMail); // 調試訊息
     teacherMailInput.value = teacherMail;
+    console.log('教師信箱儲存格:', teacherMailInput); // 調試訊息
 
     const teacherID = teacherName+"_"+teacherMail;
 
@@ -140,10 +141,15 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.keys(data).forEach(key => {
                 const element = form.elements[key];
                 if (element) {
-                    if (element.type === "checkbox") {
-                        element.checked = (data[key] === "是");
-                    } else {
-                        element.value = data[key];
+                    const newValue = data[key];
+
+                    // ✅ 避免把原本有值的欄位覆蓋成空白
+                    if (newValue !== undefined && newValue !== "") {
+                        if (element.type === "checkbox") {
+                            element.checked = (newValue === "是");
+                        } else {
+                            element.value = newValue;
+                        }
                     }
                 }
             });
