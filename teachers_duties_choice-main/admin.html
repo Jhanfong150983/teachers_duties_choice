@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理員總覽</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div class="admin-wrapper">
+  <div class="admin-top">
+    <div id="admin-container-data">
+      <h1>教師積分與志願總覽</h1>
+      <div id="table-container">
+        <table id="teacher-table">
+          <thead>
+            <tr>
+              <th>教師姓名</th>
+              <th>總分</th>
+              <th>第一志願</th>
+              <th>第二志願</th>
+              <th>第三志願</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 資料將由 JS 動態插入 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="admin-container-work">
+      <h1>教師職務安排統計</h1>
+    </div>
+  </div>
+
+  <!-- 改進後的問題框 HTML 結構 -->
+  <div id="question-box">
+    <h2>您想瞭解學校老師的什麼狀況？</h2>
+    
+    <div class="input-container">
+      <textarea id="question-input" placeholder="請輸入您的問題，我將協助您分析教師資料..." rows="4"></textarea>
+    </div>
+    
+    <div class="button-container">
+      <button id="submit-question" onclick="askAI()">送出問題</button>
+      <span id="loading" class="loading">處理您的問題中...</span>
+    </div>
+    
+    <div id="ai-response"></div>
+  </div>
+
+  <div id="loading-spinner" class="hidden">
+    <div class="spinner"></div>
+    <p>載入中，請稍候...</p>
+  </div>
+
+  <!-- 新增：固定在右下角的登出按鈕 -->
+  <div class="corner-logout">
+    <button class="logout-button" onclick="logout()">登出</button>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+.web-container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    margin-top: 200px; /* 調整為較小的間距 */
+    max-width: 50%;
+    max-height: 80vh; /* 限制最大高度為視窗的 80% */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 上對齊 */
+    overflow-y: auto; /* 允許垂直滾動 */
+}
+
+.web-container h1{
+    font-size: 2em;
+    color: #333;
+}
+
+.web-container h3{
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap:20px; /* 卡片之間的間距 */
+}
+.card {
+    flex: 1 1 calc(50% - 20px); /* 每個卡片佔 50% 寬度，減去間距 */
+    max-width: 500px; /* 限制卡片最大寬度 */
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* 確保內邊距不影響寬度計算 */
+    overflow: hidden; /* 隱藏溢出的內容 */
+}
+
+.card h2 {
+    font-size: 1.2em;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card fieldset {
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    gap: 1rem;
+}
+
+.card fieldset label {
+    white-space: nowrap; /* 防止文字換行 */
+  }
+
+
+.card label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.card input[type="text"],
+.card input[type="email"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.card input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
+
+.option-group {
+    width: 100%;          /* 獨佔一整行 */
+  }
+  
+  .option-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* 確保按鈕位於正下方 */
+.button-wrapper {
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    margin-top: 20px; /* 與上方內容保持間距 */
+    width: 100%; /* 確保按鈕容器寬度與表單一致 */
+    gap: 10px;
+}
+
+button{
+    padding: 0.75em 2em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #3f8efc;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #336fcc;
+   
+}
+
+textarea {
+    width: 100% !important; /* 填滿父容器的寬度 */
+    min-height: 80px; /* 設定最小高度 */
+    max-height: 200px; /* 設定最大高度 */
+    overflow-y: auto; /* 顯示垂直滾動條 */
+    resize: vertical; /* 允許垂直調整大小 */
+    box-sizing: border-box; /* 包含內邊距與邊框 */
+}
+
+.text-red {
+    font-size: 1em;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #ff0000;
+}
+
+.input-group {
+    height: 50px;
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    align-items: center;
+    gap: 5px;
+  }
+
+  .clean-button {
+    all: unset; /* 重設所有預設樣式 */
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .clean-button:hover {
+    background-color: #0056b3;
+    }
+
+    #add-button {
+        width: 100%;
+      }
+      
+    #add-button:disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+        border: 1px solid #999;
+    }
+
+    .select-style{
+        width: 50%;
+        height:30px; /* 確保選擇框高度與其他元素一致 */
+        
+    }
+
+    .input-style{
+        margin-bottom: 0px !important;
+        width: 100%;
+        height: 10px; /* 確保選擇框高度與其他元素一致 */
+    }
+
+    .button-style {
+        margin-top: 0px !important;
+        width: 30px !important;
+        height: 30px !important; /* 確保按鈕大小一致 */
+        background-color: transparent !important;  /* 透明背景 */
+        padding: 0px !important;
+        border: none;                   /* 無邊框 */
+        cursor: pointer;                /* 游標變為指針 */
+        font-size: 16px;                 /* 適當的字體大小 */
+        color: #ff0000;                  /* X 的顏色設為紅色 */
+        display: inline-block;           /* 讓按鈕與其他元素並排顯示 */
+        line-height: 16px;               /* 調整字形行高，讓 X 顯得更居中 */
+        border-radius: 50%;              /* 圓形背景邊框 */
+      }
+      
+      .button-style:hover {
+        background-color: rgba(255, 0, 0, 0.1);  /* 滑鼠懸停時背景顏色 */
+      }
+      
+      .button-style:focus {
+        outline: none;                  /* 去除點擊後的邊框 */
+      }
+
+/* 更小螢幕的優化 */
+@media (max-width: 480px) {
+    /* 主容器樣式 */
+.web-container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    margin: 60px auto 0; /* 調整間距並水平居中 */
+    width: 95%; /* 在手機上使用更大比例 */
+    max-width: 1200px; /* 限制最大寬度 */
+    max-height: 85vh; /* 限制最大高度為視窗的 85% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 上對齊 */
+    overflow-y: auto; /* 允許垂直滾動 */
+}
+
+.web-container h1 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.web-container h3 {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #333;
+    width: 100%;
+    text-align: left;
+}
+
+/* 卡片容器與卡片樣式 */
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 居中顯示 */
+    gap: 20px; /* 卡片之間的間距 */
+}
+
+.card {
+    flex: 1 1 300px; /* 更適合響應式的基礎寬度 */
+    max-width: 100%; /* 允許在小螢幕上佔據全寬 */
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* 隱藏溢出的內容 */
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card fieldset {
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    gap: 1rem;
+    border: none; /* 移除預設邊框 */
+    padding: 0; /* 移除預設內邊距 */
+    margin: 0; /* 移除預設外邊距 */
+}
+
+.card fieldset label {
+    width: 50%; /* 確保標籤佔滿整行 */
+}
+
+/* 表單元素樣式 */
+.card label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.card input[type="text"],
+.card input[type="email"] {
+    width: 100%; /* 填滿容器 */
+    padding: 12px 10px; /* 增加高度，方便觸控 */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.card input[type="checkbox"] {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px; /* 增加尺寸以便於觸控 */
+    -webkit-appearance: none;  /* 移除預設的外觀 */
+    appearance: none;  /* 移除預設的外觀 */
+    border: 2px solid #ccc;  /* 給checkbox加上邊框 */
+    border-radius: 4px;  /* 圓角 */
+    position: relative; /* 讓內部勾選顯示在框框內 */
+    cursor: pointer;  /* 點擊效果 */
+    transition: all 0.3s ease; /* 加入平滑過渡效果 */
+}
+
+.card input[type="checkbox"]:checked {
+    background-color: #007BFF;  /* 勾選時顯示藍色背景 */
+    border-color: #007BFF;  /* 邊框顏色 */
+}
+
+.card input[type="checkbox"]:checked::before {
+    content: "✔";  /* 勾選時顯示勾勾 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;  /* 勾勾顏色 */
+    font-size: 14px;
+    transition: opacity 0.3s ease; /* 平滑過渡效果 */
+}
+
+.card input[type="checkbox"]:not(:checked)::before {
+    content: "";  /* 沒勾選時，清除內容 */
+    opacity: 0;  /* 隱藏勾勾 */
+}
+
+.option-group {
+    width: 100%;  /* 獨佔一整行 */
+    margin-bottom: 10px;
+}
+
+.option-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 5px 0; /* 增加可點擊區域 */
+}
+
+/* 按鈕樣式 */
+.button-wrapper {
+    display: flex;
+    flex-direction: row; /* 預設為水平排列 */
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap; /* 在需要時允許換行 */
+}
+
+button {
+    padding: 0.75em 2em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #3f8efc;
+    color: white;
+    cursor: pointer;
+    min-width: 120px; /* 確保按鈕有合理的最小寬度 */
+    touch-action: manipulation; /* 改善行動裝置上的點擊體驗 */
+}
+
+button:hover, button:active {
+    background-color: #336fcc;
+}
+
+.card button {
+    width: 100%;
+    padding: 12px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card button:hover, .card button:active {
+    background-color: #0056b3;
+}
+
+/* 文本區域樣式 */
+textarea {
+    width: 100% !important;
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    resize: vertical;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit; /* 繼承父元素的字體 */
+}
+
+.text-red {
+    font-size: 0.9rem;
+    margin: 5px 0 10px;
+    color: #ff0000;
+}
+}
+
+/* 確保針對不同設備的安全區域 */
+@supports (padding: max(0px)) {
+    .web-container {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+    }
+}
+
+/* 防止iOS上的縮放問題 */
+@media screen and (max-device-width: 480px) {
+    input, select, textarea {
+        font-size: 16px; /* 防止iOS上自動縮放 */
+    }
+}

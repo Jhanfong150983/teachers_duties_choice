@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新竹市關埔國小教師職務選填系統</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="loading-spinner" class="hidden">
+        <div class="spinner"></div>
+        <p>資料處理中，請稍候...</p>
+    </div>
+    <div id="container">
+        <h1>註冊密碼</h1>
+        <form id="register-form" action="register-result.html" method="get">
+            <label for="register-name">教師名稱</label>
+            <input type="text" id="register-name" name="teacherName" placeholder="請輸入您的姓名全名" required>
+
+            <label for="register-name">e-mail</label>
+            <input type="text" id="register-mail" name="mail" placeholder="請輸入您的通訊信箱" required>
+
+            <label for="register-password">註冊密碼</label>
+
+            <div class="field-container">
+                <div class="input-wrapper">
+                    <input type="password" id="register-password" name="password" placeholder="8-16 字元，包含英文字母和數字" required>
+                    <span class="toggle-password" data-target="register-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                        </svg>
+                    </span>
+                </div>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="field-container">
+                <label for="confirm-password">再次輸入密碼</label>
+                <div class="input-wrapper">
+                    <input type="password" id="confirm-password" placeholder="請再次輸入密碼" required>
+                    <span class="toggle-password" data-target="confirm-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                        </svg>
+                    </span>
+                </div>
+                <small class="error-message"></small>
+            </div>
+
+            <button type="submit">註冊</button>
+        </form>
+        <p>已經有密碼？<a href="index.html">返回登入</a></p>
+    </div>
+    <script src="js/register.js"></script>
+</body>
+</html>
