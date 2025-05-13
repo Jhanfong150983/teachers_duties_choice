@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.tableBody = document.querySelector('#teacher-table tbody');
   const loading = document.getElementById('loading-spinner');
   
-  const baseUrl = 'https://script.google.com/macros/s/AKfycbxl4muxmGpDLPvOuXQaCRYfgJK9Hc20QZJtDRu5ia_5tX7WoCoZhvQSIFrYSpRehdNqNg/exec';
+  const baseUrl = 'https://script.google.com/macros/s/AKfycbzy9Mk6ych-CDs-ltEtdJl9xq-3edNnO04wZgd9lrL-ocKUoxR0i6s1VVlYTMKK0-lzRA/exec';
   const action = 'getTeacherScoreAndPreference';
   const fullUrl = `${baseUrl}?action=${action}`;
   
@@ -211,12 +211,25 @@ function updateStatistics() {
     }
   });
   
-  // 添加卡片容器
+  // 首先確保admin-container-work有正確的樣式設置
+  adminContainer.style.display = 'flex';
+  adminContainer.style.flexDirection = 'column';
+  adminContainer.style.height = '100%';
+  adminContainer.style.overflow = 'hidden'; // 防止整體容器溢出
+  adminContainer.style.position = 'relative'; // 添加相對定位
+  
+  // 添加卡片容器並設置溢出控制
   const cardContainer = document.createElement('div');
   cardContainer.className = 'statistics-cards';
   cardContainer.style.display = 'flex';
   cardContainer.style.flexWrap = 'wrap';
   cardContainer.style.gap = '15px';
+  cardContainer.style.flex = '1'; // 讓容器填充剩餘空間
+  cardContainer.style.overflowY = 'auto'; // 垂直方向可滾動
+  cardContainer.style.overflowX = 'hidden'; // 防止水平滾動
+  cardContainer.style.padding = '10px'; // 添加內邊距
+  cardContainer.style.boxSizing = 'border-box'; // 確保padding不會增加元素大小
+  cardContainer.style.width = '100%'; // 確保容器寬度填滿父元素
   adminContainer.appendChild(cardContainer);
   
   // 為每個選擇創建一個卡片
@@ -228,6 +241,10 @@ function updateStatistics() {
     card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
     card.style.backgroundColor = '#f9f9f9';
     card.style.minWidth = '200px';
+    card.style.maxWidth = '300px'; // 限制最大寬度
+    card.style.flexGrow = '1'; // 允許卡片在空間足夠時擴展
+    card.style.flexBasis = '200px'; // 基本寬度
+    card.style.marginBottom = '15px'; // 底部間距
     
     const header = document.createElement('h3');
     header.textContent = choice;
@@ -241,6 +258,8 @@ function updateStatistics() {
     
     const teacherList = document.createElement('div');
     teacherList.style.marginTop = '10px';
+    teacherList.style.maxHeight = '150px'; // 限制教師列表高度
+    teacherList.style.overflowY = 'auto'; // 如果老師太多，添加垂直滾動
     
     // 加入教師名單
     const teachersTitle = document.createElement('p');
@@ -248,17 +267,22 @@ function updateStatistics() {
     teachersTitle.style.marginBottom = '5px';
     teacherList.appendChild(teachersTitle);
     
+    const teacherTagContainer = document.createElement('div');
+    teacherTagContainer.style.display = 'flex';
+    teacherTagContainer.style.flexWrap = 'wrap';
+    teacherTagContainer.style.gap = '4px';
+    
     teacherChoices[choice].forEach(teacher => {
       const teacherItem = document.createElement('div');
       teacherItem.textContent = teacher;
       teacherItem.style.padding = '3px 8px';
-      teacherItem.style.margin = '2px';
       teacherItem.style.backgroundColor = '#e9e9e9';
       teacherItem.style.borderRadius = '4px';
       teacherItem.style.display = 'inline-block';
-      teacherList.appendChild(teacherItem);
+      teacherTagContainer.appendChild(teacherItem);
     });
     
+    teacherList.appendChild(teacherTagContainer);
     card.appendChild(teacherList);
     cardContainer.appendChild(card);
   }
@@ -269,7 +293,48 @@ function updateStatistics() {
     noData.textContent = '尚未有選擇資料';
     noData.style.padding = '20px';
     noData.style.textAlign = 'center';
-    adminContainer.appendChild(noData);
+    cardContainer.appendChild(noData);
+  } else if (Object.keys(choiceCount).length > 10) {
+    // 如果卡片數量超過10個，添加一個提示訊息
+    const scrollHint = document.createElement('div');
+    scrollHint.textContent = '滑動查看更多選項';
+    scrollHint.style.textAlign = 'center';
+    scrollHint.style.padding = '10px';
+    scrollHint.style.fontStyle = 'italic';
+    scrollHint.style.color = '#666';
+    scrollHint.style.width = '100%';
+    scrollHint.style.position = 'sticky';
+    scrollHint.style.bottom = '0';
+    scrollHint.style.backgroundColor = 'rgba(255,255,255,0.8)';
+    cardContainer.appendChild(scrollHint);
+  }
+  
+  // 添加響應式調整
+  window.addEventListener('resize', adjustCardLayout);
+  adjustCardLayout();
+}
+
+// 調整卡片布局的輔助函數
+function adjustCardLayout() {
+  const cardContainer = document.querySelector('.statistics-cards');
+  if (!cardContainer) return;
+  
+  const containerWidth = cardContainer.offsetWidth;
+  const cards = cardContainer.querySelectorAll('.stat-card');
+  
+  // 根據容器寬度調整卡片布局
+  if (containerWidth < 600) {
+    // 小螢幕時，卡片占據更多寬度
+    cards.forEach(card => {
+      card.style.flexBasis = '100%';
+      card.style.maxWidth = '100%';
+    });
+  } else {
+    // 較大螢幕，多卡片並排
+    cards.forEach(card => {
+      card.style.flexBasis = '200px';
+      card.style.maxWidth = '300px';
+    });
   }
 }
 
