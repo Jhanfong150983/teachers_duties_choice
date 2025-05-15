@@ -100,22 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullURL = `${scriptURL}?${queryParams.toString()}`;
     console.log("API URL:", fullURL); // 調試訊息
 
-    fetch(fullURL)
-        .then(response => response.json())
-        .then(data => {
-        if (data.success) {
-            alert("✅ 資料送出成功！");
-            window.location.href = "work.html";
-        } else {
-            alert("⚠️ 發生錯誤：" + data.message);
-        }
-        hideLoading(); // 隱藏等待畫面
-        })
-        .catch(error => {
+    fetch(fullURL, { method: "GET", mode: "no-cors" })
+      .then(() => {
+        alert("✅ 資料已送出！");
+        window.location.href = "work.html";
+      })
+      .catch(error => {
         console.error("錯誤:", error);
         alert("❌ 發送失敗，請稍後再試。");
-        hideLoading(); // 隱藏等待畫面
-        });
+      })
+      .finally(() => {
+        hideLoading(); // 隱藏等待畫面（無論成功或失敗）
+      });
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
