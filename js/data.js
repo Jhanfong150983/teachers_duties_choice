@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join(";");  // 用分號分隔每一筆經歷
 
     // 3. 加入到 queryParams 中
-    queryParams.append("experienceCombined", experiences);
+    formData.append("experienceCombined", experiences);
 
     // 4. 遍歷表單其他欄位
     Array.from(form.elements).forEach(element => {
