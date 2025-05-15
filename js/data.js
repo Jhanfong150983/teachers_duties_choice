@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwi7wE3RNCwLhi_FT_1PQPiOgvfk-iInN4iXIHmqJeVWteAklqmHquXQUP_tqoqVuYsbw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw68U59cpWeIINccZwDWOxFubjfSF8F3BP5GpNA6H82q_tMoLAtwLMuswkSARY4UNwwAA/exec";
     // 使用POST方法提交數據
         fetch(scriptURL, {
             method: 'POST',
