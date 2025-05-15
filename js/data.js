@@ -96,22 +96,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxl4muxmGpDLPvOuXQaCRYfgJK9Hc20QZJtDRu5ia_5tX7WoCoZhvQSIFrYSpRehdNqNg/exec";
-    const fullURL = `${scriptURL}?${queryParams.toString()}`;
-    console.log("API URL:", fullURL); // 調試訊息
-
-    fetch(fullURL, { method: "GET", mode: "no-cors" })
-      .then(() => {
-        alert("✅ 資料已送出！");
-        window.location.href = "work.html";
-      })
-      .catch(error => {
-        console.error("錯誤:", error);
-        alert("❌ 發送失敗，請稍後再試。");
-      })
-      .finally(() => {
-        hideLoading(); // 隱藏等待畫面（無論成功或失敗）
-      });
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwi7wE3RNCwLhi_FT_1PQPiOgvfk-iInN4iXIHmqJeVWteAklqmHquXQUP_tqoqVuYsbw/exec";
+    // 使用POST方法提交數據
+        fetch(scriptURL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors' // 重要：解決CORS問題
+        })
+        .then(response => {
+            // 由於使用 no-cors 模式，我們無法直接讀取響應內容
+            // 因此需要使用另一個請求來檢查操作是否成功
+            return checkSubmissionStatus(teacherID);
+        })
+        .then(success => {
+            if (success) {
+                alert("✅ 資料送出成功！");
+                window.location.href = "work.html";
+            }
+            hideLoading();
+        })
+        .catch(error => {
+            console.error("錯誤:", error);
+            alert("❌ 發送失敗，請稍後再試。");
+            hideLoading();
+        });
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
