@@ -106,14 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
             // 由於使用 no-cors 模式，我們無法直接讀取響應內容
-            // 因此需要使用另一個請求來檢查操作是否成功
-            return checkSubmissionStatus(teacherID);
-        })
-        .then(success => {
-            if (success) {
-                alert("✅ 資料送出成功！");
-                window.location.href = "work.html";
-            }
+        if (success) {
+            alert("✅ 資料送出成功！");
+            window.location.href = "work.html";
+        }
             hideLoading();
         })
         .catch(error => {
