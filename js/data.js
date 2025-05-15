@@ -105,20 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
             mode: 'no-cors' // 重要：解決CORS問題
         })
         .then(response => {
-            if (response.ok) {
-                alert("✅ 資料送出成功！");
-                window.location.href = "work.html";
-            } else {
-                throw new Error("伺服器回應錯誤");
-            }
+            alert("✅ 資料已送出！");
+            window.location.href = "work.html";
+            hideLoading();
         })
         .catch(error => {
             console.error("錯誤:", error);
             alert("❌ 發送失敗，請稍後再試。");
-        })
-        .finally(() => {
             hideLoading();
-        });
+        })
 });
     
     // ✅ 呼叫 API 取得資料並填入表單
