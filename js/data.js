@@ -105,16 +105,18 @@ document.addEventListener('DOMContentLoaded', () => {
             mode: 'no-cors' // 重要：解決CORS問題
         })
         .then(response => {
-            // 由於使用 no-cors 模式，我們無法直接讀取響應內容
-        if (success) {
-            alert("✅ 資料送出成功！");
-            window.location.href = "work.html";
-        }
-            hideLoading();
+            if (response.ok) {
+                alert("✅ 資料送出成功！");
+                window.location.href = "work.html";
+            } else {
+                throw new Error("伺服器回應錯誤");
+            }
         })
         .catch(error => {
             console.error("錯誤:", error);
             alert("❌ 發送失敗，請稍後再試。");
+        })
+        .finally(() => {
             hideLoading();
         });
 });
