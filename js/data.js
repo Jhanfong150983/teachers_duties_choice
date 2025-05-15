@@ -68,9 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showLoading();
 
-    const queryParams = new URLSearchParams();
-    queryParams.append("teacherID", teacherID);
-    queryParams.append("action", "updateTeacherData");
+    // 建立一個FormData對象來收集表單數據
+    const formData = new FormData();
+    formData.append("teacherID", teacherID);
+    formData.append("action", "updateTeacherData");
 
     // 1. 取得 experienceYear 和 experienceDetail 的資料
     const years = Array.from(document.getElementsByName("experienceYear[]")).map(el => el.value.trim());
@@ -82,16 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${year}：${detail}`;
     }).join(";");  // 用分號分隔每一筆經歷
 
-    // 3. 加入到 queryParams 中
+    // 3. 加入到 formData 中
     formData.append("experienceCombined", experiences);
 
     // 4. 遍歷表單其他欄位
     Array.from(form.elements).forEach(element => {
         if (element.name && element.name !== "teacherName" && element.name !== "experienceYear[]" && element.name !== "experienceDetail[]") { 
             if (element.type === "checkbox") {
-                queryParams.append(element.name, element.checked ? "是" : "");
+                formData.append(element.name, element.checked ? "是" : "");
             } else {
-                queryParams.append(element.name, element.value.trim());
+                formData.append(element.name, element.value.trim());
             }
         }
     });
