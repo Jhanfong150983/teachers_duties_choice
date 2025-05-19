@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading();
     
         // 使用 URL GET 傳送資料
-        const baseURL = 'https://script.google.com/macros/s/AKfycbxWDlgJas-ShiivY7A4GJU9vPW1ZzCp3z5RhajRTDnKLLKv9fY4WWyxCIXQb7Trzzaqeg/exec';
+        const baseURL = 'https://script.google.com/macros/s/AKfycbwyqE-C4rd1gRLpOID56MSfyy1ePE8Pxpwdjn82luyaqIirFrrbr32C7ekvRc3G7iALVg/exec';
         const params = new URLSearchParams({
             action: 'register', // ✅ 可輕易更改為 'login'、'check' 等
             teacherName: teacherName,
