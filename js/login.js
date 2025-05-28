@@ -10,9 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkTimeLimit() {
         // 設定截止日期和時間 (請根據需要修改)
         // 格式: 年, 月(0-11), 日, 時, 分, 秒
-        const deadlineDate = new Date(2025, 5, 28, 17, 0, 0); // 2025年6月30日下午5:00
+        const deadlineDate = new Date(2025, 4, 28, 17, 0, 0); // 2025年6月30日下午5:00
         
         const currentDate = new Date();
+        
+        console.log('當前時間:', currentDate);
+        console.log('截止時間:', deadlineDate);
+        console.log('系統是否鎖定:', currentDate > deadlineDate);
         
         if (currentDate > deadlineDate) {
             // 顯示鎖定遮罩
