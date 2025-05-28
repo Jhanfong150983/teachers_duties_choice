@@ -6,6 +6,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const loadingSpinner = document.getElementById('loading-spinner');
 
+    // 時間鎖定功能
+    function checkTimeLimit() {
+        // 設定截止日期和時間 (請根據需要修改)
+        // 格式: 年, 月(0-11), 日, 時, 分, 秒
+        const deadlineDate = new Date(2025, 5, 28, 17, 0, 0); // 2025年6月30日下午5:00
+        
+        const currentDate = new Date();
+        
+        if (currentDate > deadlineDate) {
+            // 顯示鎖定遮罩
+            const overlay = document.getElementById('time-lock-overlay');
+            if (overlay) {
+                overlay.classList.remove('hidden');
+            }
+            // 讓主要內容模糊並禁用互動
+            const container = document.getElementById('container');
+            if (container) {
+                container.classList.add('blurred');
+            }
+            return true; // 系統已鎖定
+        }
+        return false; // 系統未鎖定
+    }
+
+    // 頁面載入時檢查時間限制
+    const isLocked = checkTimeLimit();
+    
+    // 每分鐘檢查一次時間限制
+    setInterval(checkTimeLimit, 60000); // 60000ms = 1分鐘
+    
     // 顯示等待畫面
     function showLoading() {
         loadingSpinner.classList.remove('hidden');
