@@ -6,13 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const loadingSpinner = document.getElementById('loading-spinner');
 
-// 管理員清單 - 可以根據需要調整
-    const ADMIN_NAMES = ['admin'];
+    // 管理員清單 - 可以根據需要調整
+    const ADMIN_NAMES = ['admin', 'administrator', '系統管理員'];
     const ADMIN_EMAILS = [
-        'publicgpps@tmail.hc.edu.tw'
+        'admin@gpps.hc.edu.tw',
+        'system@gpps.hc.edu.tw',
+        'master@gpps.hc.edu.tw'
     ];
 
-// 檢查是否為管理員
+    // 檢查是否為管理員
     function isAdmin(teacherName, teacherMail) {
         const nameCheck = ADMIN_NAMES.some(adminName => 
             teacherName.toLowerCase() === adminName.toLowerCase()
@@ -22,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         return nameCheck || emailCheck;
     }
-    
+
     // 時間鎖定功能
     function checkTimeLimit() {
         // 設定截止日期和時間 (請根據需要修改)
         // 格式: 年, 月(0-11), 日, 時, 分, 秒
-        const deadlineDate = new Date(2025, 4, 28, 17, 0, 0); // 2025年6月30日下午5:00
+        const deadlineDate = new Date(2025, 4, 28, 17, 0, 0); // 2025年5月28日下午5:00
         
         const currentDate = new Date();
         
@@ -112,9 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-
-
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -125,6 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!teacherName || !password) {
             alert('請輸入教師名稱和密碼');
+            return;
+        }
+
+        // 檢查時間鎖定狀態
+        const isTimeLocked = checkTimeLimit();
+        const userIsAdmin = isAdmin(teacherName, teacherMail);
+
+        // 如果時間已鎖定且不是管理員，阻止登入
+        if (isTimeLocked && !userIsAdmin) {
+            alert('系統已過登記時間，一般教師無法登入。\n管理員請使用管理員帳號登入。\n如有問題請洽課務組。');
             return;
         }
 
@@ -140,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const url = `${baseURL}?${params.toString()}`;
         console.log(url); // Log the URL for debugging
+        
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -149,9 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('teacherMail', teacherMail);
 
                     // 根據教師姓名判斷跳轉頁面
-                    if (teacherName.toLowerCase() === 'admin') {
+                    if (teacherName.toLowerCase() === 'admin' || userIsAdmin) {
+                        console.log('管理員登入成功');
                         window.location.href = 'admin.html'; // 管理員跳轉
                     } else {
+                        console.log('一般教師登入成功');
                         window.location.href = 'data.html'; // 一般教師跳轉
                     }
                 } else {
