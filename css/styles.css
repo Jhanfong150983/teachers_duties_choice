@@ -155,6 +155,49 @@ a:hover {
     animation: spin 1s linear infinite;
 }
 
+/* 確保 hidden 類別能正確隱藏元素 */
+.hidden {
+    display: none !important;
+}
+
+/* 時間鎖定覆蓋層樣式 */
+#time-lock-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 當有 hidden 類別時隱藏 */
+#time-lock-overlay.hidden {
+    display: none !important;
+}
+
+.lock-message {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lock-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* 讓主容器模糊的樣式 */
+.blurred {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
 /* 跑動動畫的關鍵幀 */
 @keyframes spin {
     0% {
