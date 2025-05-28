@@ -6,6 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const loadingSpinner = document.getElementById('loading-spinner');
 
+// 管理員清單 - 可以根據需要調整
+    const ADMIN_NAMES = ['admin'];
+    const ADMIN_EMAILS = [
+        'publicgpps@tmail.hc.edu.tw'
+    ];
+
+// 檢查是否為管理員
+    function isAdmin(teacherName, teacherMail) {
+        const nameCheck = ADMIN_NAMES.some(adminName => 
+            teacherName.toLowerCase() === adminName.toLowerCase()
+        );
+        const emailCheck = ADMIN_EMAILS.some(adminEmail => 
+            teacherMail.toLowerCase() === adminEmail.toLowerCase()
+        );
+        return nameCheck || emailCheck;
+    }
+    
     // 時間鎖定功能
     function checkTimeLimit() {
         // 設定截止日期和時間 (請根據需要修改)
@@ -19,17 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('系統是否鎖定:', currentDate > deadlineDate);
         
         if (currentDate > deadlineDate) {
-            // 顯示鎖定遮罩
-            const overlay = document.getElementById('time-lock-overlay');
-            if (overlay) {
-                overlay.classList.remove('hidden');
+            // 顯示時間鎖定提示（不完全鎖定頁面）
+            const timeLockNotice = document.getElementById('time-lock-notice');
+            const timeLockWarning = document.getElementById('time-lock-warning');
+            
+            if (timeLockNotice) {
+                timeLockNotice.classList.remove('hidden');
             }
-            // 讓主要內容模糊並禁用互動
-            const container = document.getElementById('container');
-            if (container) {
-                container.classList.add('blurred');
+            if (timeLockWarning) {
+                timeLockWarning.classList.remove('hidden');
             }
+            
             return true; // 系統已鎖定
+        } else {
+            // 隱藏時間鎖定提示
+            const timeLockNotice = document.getElementById('time-lock-notice');
+            const timeLockWarning = document.getElementById('time-lock-warning');
+            
+            if (timeLockNotice) {
+                timeLockNotice.classList.add('hidden');
+            }
+            if (timeLockWarning) {
+                timeLockWarning.classList.add('hidden');
+            }
         }
         return false; // 系統未鎖定
     }
